@@ -1,14 +1,17 @@
-FROM debian:jessie
-MAINTAINER http://m-ko.de Markus Kosmal <dude@m-ko.de>
+FROM jeffballard/cae-debian-base
+# Modified for use at CAE
+#MAINTAINER http://m-ko.de Markus Kosmal <dude@m-ko.de>
+# Thanks Markus! :)
+MAINTAINER Jeff Ballard <ballard@ohpleasedontspammewisc.edu>
 
-# Debian Base to use
-ENV DEBIAN_VERSION jessie
-
-# initial install of av daemon
-RUN echo "deb http://http.debian.net/debian/ $DEBIAN_VERSION main contrib non-free" > /etc/apt/sources.list && \
-    echo "deb http://http.debian.net/debian/ $DEBIAN_VERSION-updates main contrib non-free" >> /etc/apt/sources.list && \
-    echo "deb http://security.debian.org/ $DEBIAN_VERSION/updates main contrib non-free" >> /etc/apt/sources.list && \
-    apt-get update && \
+## Debian Base to use
+#ENV DEBIAN_VERSION jessie
+#
+## initial install of av daemon
+#RUN echo "deb http://http.debian.net/debian/ $DEBIAN_VERSION main contrib non-free" > /etc/apt/sources.list && \
+    #echo "deb http://http.debian.net/debian/ $DEBIAN_VERSION-updates main contrib non-free" >> /etc/apt/sources.list && \
+    #echo "deb http://security.debian.org/ $DEBIAN_VERSION/updates main contrib non-free" >> /etc/apt/sources.list && \
+RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -qq \
         clamav-daemon \
         clamav-freshclam \
